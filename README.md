@@ -17,3 +17,9 @@ After I set up the service to expose my app, the logs started to show something 
 The -n option in kubectl commands specifies the namespace in which to perform the operation. Namespaces in Kubernetes are used to organize and segregate groups of resources within the cluster.  We could have separate namespaces for development, testing, and production environments, ensuring that resources from one environment don't accidentally affect another.
 
 If we don't use the -n option when running a kubectl command, Kubernetes automatically assumes we mean the "default" namespace. This "default" namespace is where Kubernetes looks for any resources we're trying to interact with unless told otherwise. But if we use -n, it shows us things from a special area reserved for Kubernetes' own use, which doesn't include our usual apps and services. Therefore, our user created deployments, pods, and services, which are in the default namespace, are not listed.
+
+# Reflection on Rolling Update and Kubernetes Manifest File
+
+1. The difference between Rolling Update and Recreate deployment strategy?
+   
+Rolling Update is a method where updates are implemented gradually, ensuring that the application remains accessible with minimal disruptions. It replaces old parts with new ones bit by bit. Rolling Update's gradual approach helps in seamlessly transitioning to newer versions while keeping the application running. In contrast, Recreate halts the current version entirely before launching the new one. This results in a downtime period during the update process. It's not the best choice if the app needs to be continuously available.
